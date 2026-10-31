@@ -30,6 +30,26 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({
   const springP = useSpring(rawP, { stiffness: 180, damping: 28, restDelta: 0.001 });
 
   useEffect(() => {
+    const assets = [
+      "/suasanaatap.jpg",
+      "/rooftop.jpg",
+      "/spider2.webp",
+      "/mev2.webp",
+      "/boom.svg",
+      "/pouptellme.svg",
+      "/percakapan2.svg",
+      "/percakapan3.svg",
+      "/percakapan4.svg",
+      "/percakapan5.svg",
+      "/percakapan6.svg",
+    ];
+    assets.forEach((href) => {
+      const img = new Image();
+      img.src = href;
+    });
+  }, []);
+
+  useEffect(() => {
     const onWheel = (e: WheelEvent) => {
       if (lockRef.current) return;
 
@@ -154,7 +174,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({
           src={src}
           playsInline
           muted
-          preload="metadata"
+          preload="auto"
           onTimeUpdate={handleTimeUpdate}
           className="w-full h-full object-cover"
         />

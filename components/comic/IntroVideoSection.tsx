@@ -86,7 +86,7 @@ export const IntroVideoSection: React.FC<IntroVideoSectionProps> = ({
         src={src}
         playsInline
         muted
-        preload="metadata"
+        preload="auto"
         onTimeUpdate={handleTimeUpdate}
         className="w-full h-full object-cover"
       />

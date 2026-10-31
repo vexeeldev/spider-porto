@@ -121,11 +121,15 @@ export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({ exitProgress
               src="/spiderman.webp"
               alt=""
               aria-hidden="true"
+              loading="eager"
+              decoding="async"
               className="absolute h-[105vh] md:h-[120vh] max-w-[60vw] w-auto object-contain translate-x-[-8.8%] md:translate-x-[-0.8%] translate-y-[7.2%] filter brightness-0 z-0"
             />
             <img
               src="/spiderman.webp"
               alt="Spider-Man"
+              loading="eager"
+              decoding="async"
               className="relative h-[105vh] md:h-[120vh] max-w-[60vw] w-auto object-contain translate-x-[-10%] md:translate-x-[-2%] translate-y-[6%] z-10"
             />
           </motion.div>
@@ -157,11 +161,15 @@ export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({ exitProgress
               src="/me.webp"
               alt=""
               aria-hidden="true"
+              loading="eager"
+              decoding="async"
               className="absolute h-[92vh] md:h-[110vh] max-w-[55vw] w-auto object-contain translate-x-[1.2%] translate-y-[1.2%] filter brightness-0 z-0"
             />
             <img
               src="/me.webp"
               alt="Me"
+              loading="eager"
+              decoding="async"
               className="relative h-[92vh] md:h-[110vh] max-w-[55vw] w-auto object-contain z-10"
             />
           </motion.div>
