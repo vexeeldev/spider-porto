@@ -1,13 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, useTransform, useMotionValue, MotionValue } from "framer-motion";
 
 interface ComicSplitScreenProps {
   exitProgress?: MotionValue<number>;
+  startIntro?: boolean;
 }
 
-export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({ exitProgress }) => {
+export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({
+  exitProgress,
+  startIntro = false,
+}) => {
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (startIntro && !hasAnimated) {
+      const timer = setTimeout(() => {
+        setHasAnimated(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [startIntro, hasAnimated]);
+
   const defaultProgress = useMotionValue(0);
   const activeProgress = exitProgress ?? defaultProgress;
   const leftExitX = useTransform(activeProgress, [0, 1], ["0%", "-130%"]);
@@ -98,16 +113,19 @@ export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({ exitProgress
 
       <div className="absolute inset-0 flex items-end justify-start pointer-events-none z-20 overflow-hidden">
         <motion.div style={{ x: leftExitX }} className="relative flex items-end justify-start h-full w-full">
-          <motion.div
-            initial={{ opacity: 0, x: -120 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex items-end justify-start h-full"
-          >
+          <div className="relative flex items-end justify-start h-full">
             <motion.div
-              initial={{ opacity: 0, scale: 0.5, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 2.3, ease: [0.34, 1.56, 0.64, 1] }}
+              initial={false}
+              animate={
+                hasAnimated || startIntro
+                  ? { opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 0, scale: 0.5, y: 30 }
+              }
+              transition={
+                hasAnimated
+                  ? { duration: 0 }
+                  : { duration: 0.5, delay: 0.8, ease: [0.34, 1.56, 0.64, 1] }
+              }
               className="absolute -right-44 sm:-right-68 md:-right-96 lg:-right-[28rem] bottom-[10%] md:bottom-[14%] z-20 pointer-events-none"
             >
               <img
@@ -122,32 +140,35 @@ export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({ exitProgress
               alt=""
               aria-hidden="true"
               loading="eager"
-              decoding="async"
+              decoding="sync"
               className="absolute h-[105vh] md:h-[120vh] max-w-[60vw] w-auto object-contain translate-x-[-8.8%] md:translate-x-[-0.8%] translate-y-[7.2%] filter brightness-0 z-0"
             />
             <img
               src="/spiderman.webp"
               alt="Spider-Man"
               loading="eager"
-              decoding="async"
+              decoding="sync"
               className="relative h-[105vh] md:h-[120vh] max-w-[60vw] w-auto object-contain translate-x-[-10%] md:translate-x-[-2%] translate-y-[6%] z-10"
             />
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
       <div className="absolute inset-0 flex items-end justify-end pointer-events-none z-20 overflow-hidden">
         <motion.div style={{ x: rightExitX }} className="relative flex items-end">
-          <motion.div
-            initial={{ opacity: 0, x: 120 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="relative translate-x-[6%] md:translate-x-[7%] flex items-end"
-          >
+          <div className="relative translate-x-[6%] md:translate-x-[7%] flex items-end">
             <motion.div
-              initial={{ opacity: 0, scale: 0.5, y: -30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.1, ease: [0.34, 1.56, 0.64, 1] }}
+              initial={false}
+              animate={
+                hasAnimated || startIntro
+                  ? { opacity: 1, scale: 1, y: 0 }
+                  : { opacity: 0, scale: 0.5, y: -30 }
+              }
+              transition={
+                hasAnimated
+                  ? { duration: 0 }
+                  : { duration: 0.5, delay: 0.3, ease: [0.34, 1.56, 0.64, 1] }
+              }
               className="absolute -left-28 sm:-left-44 md:-left-64 top-[7%] md:top-[11%] z-20 pointer-events-none"
             >
               <img
@@ -162,17 +183,17 @@ export const ComicSplitScreen: React.FC<ComicSplitScreenProps> = ({ exitProgress
               alt=""
               aria-hidden="true"
               loading="eager"
-              decoding="async"
+              decoding="sync"
               className="absolute h-[92vh] md:h-[110vh] max-w-[55vw] w-auto object-contain translate-x-[1.2%] translate-y-[1.2%] filter brightness-0 z-0"
             />
             <img
               src="/me.webp"
               alt="Me"
               loading="eager"
-              decoding="async"
+              decoding="sync"
               className="relative h-[92vh] md:h-[110vh] max-w-[55vw] w-auto object-contain z-10"
             />
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </div>

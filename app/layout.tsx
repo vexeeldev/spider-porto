@@ -13,9 +13,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="h-full antialiased">
-      <body className="min-h-full flex flex-col font-sans">
-        {/* <SpiderWebCursorTrail /> */}
+    <html
+      lang="id"
+      className="h-full w-full antialiased overflow-hidden select-none"
+      style={{ overflow: "hidden", scrollbarWidth: "none" }}
+    >
+      <body
+        className="h-full w-full overflow-hidden flex flex-col font-sans bg-black select-none"
+        style={{ overflow: "hidden", scrollbarWidth: "none", margin: 0 }}
+      >
         {children}
       </body>
     </html>
