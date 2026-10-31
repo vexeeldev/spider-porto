@@ -29,6 +29,7 @@ const PRELOAD_IMAGES = [
   "/percakapan4.svg",
   "/percakapan5.svg",
   "/percakapan6.svg",
+  "/comicpoup.svg",
   "/spidercursor.svg",
 ];
 
