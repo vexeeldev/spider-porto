@@ -15,8 +15,8 @@ const SCROLL_CLOSE_PX = 750;
 
 export const PortfolioHome: React.FC<PortfolioHomeProps> = ({
   src = "/intro2.mp4",
-  startSecond = 35,
-  endSecond = 46.5,
+  startSecond = 0,
+  endSecond = 11.5,
   speed = 2.0,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -284,7 +284,7 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({
                   </AnimatePresence>
 
                   <img
-                    src="/spider2.svg"
+                    src="/spider2.webp"
                     alt="Spider"
                     className="h-[92vh] md:h-[98vh] max-w-[55vw] w-auto object-contain drop-shadow-[0_16px_32px_rgba(0,0,0,0.5)]"
                   />
@@ -397,13 +397,13 @@ export const PortfolioHome: React.FC<PortfolioHomeProps> = ({
                   className="relative flex items-end justify-end h-full"
                 >
                   <img
-                    src="/mev2.svg"
+                    src="/mev2.webp"
                     alt=""
                     aria-hidden="true"
                     className="absolute h-[90vh] md:h-[98vh] max-w-[55vw] w-auto object-contain translate-x-[1.2%] translate-y-[1.2%] filter brightness-0 z-0"
                   />
                   <img
-                    src="/mev2.svg"
+                    src="/mev2.webp"
                     alt="Me V2"
                     className="relative h-[90vh] md:h-[98vh] max-w-[55vw] w-auto object-contain z-10"
                   />

@@ -13,10 +13,10 @@ interface IntroVideoSectionProps {
 
 export const IntroVideoSection: React.FC<IntroVideoSectionProps> = ({
   src = "/intro2.mp4",
-  startSecond = 35,
-  endSecond = 46.5,
+  startSecond = 0,
+  endSecond = 11.5,
   speed = 2.0,
-  whiteTriggerSecond = 46.5,
+  whiteTriggerSecond = 11.5,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
